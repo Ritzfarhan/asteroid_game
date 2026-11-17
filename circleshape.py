@@ -1,3 +1,5 @@
+
+from constants import PLAYER_RADIUS
 import pygame
 
 
@@ -23,3 +25,10 @@ class CircleShape(pygame.sprite.Sprite):
     def update(self, dt: float) -> None:
         # must override
         pass
+
+    def collides_with(self, other) -> bool:
+        #total_distance = self.position.distance_to(other)
+
+        total_radius = self.radius + PLAYER_RADIUS
+        player_position = pygame.Vector2(other.position)
+        return self.position.distance_to(player_position) <= total_radius
